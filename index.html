@@ -7,86 +7,228 @@
 <style>
   :root {
     color-scheme: light dark;
+    --brand: #265bff;
+    --brand-dark: #1a44cc;
+    --bg: #f5f6fa;
+    --surface: #ffffff;
+    --text: #14161f;
+    --muted: #6b7280;
+    --border: #e7e9f0;
+    --open-bg: #e6f6ec;
+    --open-text: #1e8e4a;
+    --closed-bg: #fdeaea;
+    --closed-text: #d23c3c;
+    --shadow: 0 1px 2px rgba(20,22,31,0.04), 0 8px 24px rgba(20,22,31,0.06);
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1117;
+      --surface: #171a23;
+      --text: #f2f3f7;
+      --muted: #9aa0ad;
+      --border: #262a36;
+      --open-bg: rgba(30,142,74,0.18);
+      --open-text: #4fd087;
+      --closed-bg: rgba(210,60,60,0.18);
+      --closed-text: #ff7373;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 720px;
-    margin: 40px auto;
-    padding: 0 20px;
-    color: #1a1a1a;
-    background: #fafafa;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
   }
-  header h1 {
-    margin-bottom: 4px;
-    font-size: 1.5rem;
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
   }
-  header p {
-    margin-top: 0;
-    color: #555;
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
+
+  .brand img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+
+  .demo-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: rgba(38,91,255,0.1);
+    border: 1px solid rgba(38,91,255,0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .hero {
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    margin: 0 0 6px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 24px;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
-  th, td {
-    padding: 12px 14px;
+
+  thead th {
     text-align: left;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  th {
-    background: #f0f0f0;
-    font-size: 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
   }
+
+  tbody td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease;
+  }
+
+  tbody tr:hover {
+    background: rgba(38,91,255,0.035);
+  }
+
+  .course-code {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--brand);
+    margin-right: 6px;
+  }
+
+  .seats {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
   .badge {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #fff;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
   }
+
   .badge.open {
-    background: #2e7d32;
+    background: var(--open-bg);
+    color: var(--open-text);
   }
+
   .badge.closed {
-    background: #c62828;
+    background: var(--closed-bg);
+    color: var(--closed-text);
   }
+
   .waitlist {
-    color: #666;
+    color: var(--muted);
+    font-size: 0.9rem;
   }
+
   footer {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    color: #888;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  footer .powered {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  footer img {
+    height: 12px;
+    width: auto;
+    opacity: 0.75;
   }
 </style>
 </head>
 <body>
-  <header>
+  <div class="topbar">
+    <div class="brand">
+      <img src="idira-logo.png" alt="Idira">
+    </div>
+    <span class="demo-pill">Demo by Idira</span>
+  </div>
+
+  <div class="hero">
     <h1>Meridian University — Course Registration</h1>
     <p id="semester">Loading semester…</p>
-  </header>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Seats</th>
-        <th>Status</th>
-        <th>Waitlist</th>
-      </tr>
-    </thead>
-    <tbody id="course-rows">
-      <tr><td colspan="4">Loading courses…</td></tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Seats</th>
+          <th>Status</th>
+          <th>Waitlist</th>
+        </tr>
+      </thead>
+      <tbody id="course-rows">
+        <tr><td colspan="4">Loading courses…</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <footer id="last-updated"></footer>
+  <footer>
+    <span id="last-updated"></span>
+    <span class="powered">Powered by CyberArk Secrets Manager &amp; <img src="idira-logo.png" alt="Idira"></span>
+  </footer>
 
 <script>
   fetch("courses.json")
@@ -102,8 +244,8 @@
           : "—";
         return (
           "<tr>" +
-          "<td>" + course.code + " " + course.name + "</td>" +
-          "<td>" + course.seats + "</td>" +
+          "<td><span class=\"course-code\">" + course.code + "</span>" + course.name + "</td>" +
+          "<td class=\"seats\">" + course.seats + "</td>" +
           "<td><span class=\"badge " + badgeClass + "\">" + course.status + "</span></td>" +
           "<td class=\"waitlist\">" + waitlist + "</td>" +
           "</tr>"
