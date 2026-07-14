@@ -9,30 +9,36 @@
     color-scheme: light dark;
     --brand: #265bff;
     --brand-dark: #1a44cc;
-    --bg: #f5f6fa;
+    --bg: #ffffff;
     --surface: #ffffff;
+    --nav-bg: #ffffff;
     --text: #14161f;
     --muted: #6b7280;
     --border: #e7e9f0;
+    --row-hover: #f7f9ff;
     --open-bg: #e6f6ec;
     --open-text: #1e8e4a;
     --closed-bg: #fdeaea;
     --closed-text: #d23c3c;
     --shadow: 0 1px 2px rgba(20,22,31,0.04), 0 8px 24px rgba(20,22,31,0.06);
+    --avatar-bg: #eef1ff;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #0f1117;
       --surface: #171a23;
+      --nav-bg: #12141b;
       --text: #f2f3f7;
       --muted: #9aa0ad;
       --border: #262a36;
+      --row-hover: #1b1f2b;
       --open-bg: rgba(30,142,74,0.18);
       --open-text: #4fd087;
       --closed-bg: rgba(210,60,60,0.18);
       --closed-text: #ff7373;
       --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+      --avatar-bg: #232838;
     }
   }
 
@@ -40,35 +46,76 @@
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
+    margin: 0;
     color: var(--text);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
   }
 
-  .topbar {
+  /* ---- Nav bar ---- */
+  nav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 36px;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
-  .brand {
+  .nav-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 32px;
   }
 
-  .brand img {
-    height: 22px;
+  .nav-logo img {
+    height: 20px;
     width: auto;
     display: block;
   }
 
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links li a {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .nav-links li a:hover {
+    background: var(--row-hover);
+    color: var(--text);
+  }
+
+  .nav-links li a.active {
+    color: var(--brand);
+    background: rgba(38,91,255,0.1);
+    font-weight: 600;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
   .demo-pill {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -80,13 +127,49 @@
     white-space: nowrap;
   }
 
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--avatar-bg);
+    color: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* ---- Page content ---- */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  .breadcrumb {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .breadcrumb span {
+    color: var(--text);
+    font-weight: 600;
+  }
+
   .hero {
-    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .hero h1 {
-    margin: 0 0 6px;
-    font-size: 1.6rem;
+    margin: 0 0 4px;
+    font-size: 1.55rem;
     font-weight: 700;
     letter-spacing: -0.01em;
   }
@@ -94,7 +177,7 @@
   .hero p {
     margin: 0;
     color: var(--muted);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
 
   .card {
@@ -136,7 +219,7 @@
   }
 
   tbody tr:hover {
-    background: rgba(38,91,255,0.035);
+    background: var(--row-hover);
   }
 
   .course-code {
@@ -181,6 +264,8 @@
     justify-content: space-between;
     font-size: 0.82rem;
     color: var(--muted);
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   footer .powered {
@@ -194,41 +279,61 @@
     width: auto;
     opacity: 0.75;
   }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
 </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="brand">
-      <img src="idira-logo.png" alt="Idira">
+  <nav>
+    <div class="nav-left">
+      <div class="nav-logo"><img src="idira-logo.png" alt="Idira"></div>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#" class="active">Course Registration</a></li>
+        <li><a href="#">Grades</a></li>
+        <li><a href="#">Financial Aid</a></li>
+        <li><a href="#">Profile</a></li>
+      </ul>
     </div>
-    <span class="demo-pill">Demo by Idira</span>
-  </div>
+    <div class="nav-right">
+      <span class="demo-pill">Demo by Idira</span>
+      <div class="avatar">MU</div>
+    </div>
+  </nav>
 
-  <div class="hero">
-    <h1>Meridian University — Course Registration</h1>
-    <p id="semester">Loading semester…</p>
-  </div>
+  <main>
+    <div class="breadcrumb">Portal / <span>Course Registration</span></div>
 
-  <div class="card">
-    <table>
-      <thead>
-        <tr>
-          <th>Course</th>
-          <th>Seats</th>
-          <th>Status</th>
-          <th>Waitlist</th>
-        </tr>
-      </thead>
-      <tbody id="course-rows">
-        <tr><td colspan="4">Loading courses…</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="hero">
+      <div>
+        <h1>Meridian University — Course Registration</h1>
+        <p id="semester">Loading semester…</p>
+      </div>
+    </div>
 
-  <footer>
-    <span id="last-updated"></span>
-    <span class="powered">Powered by CyberArk Secrets Manager &amp; <img src="idira-logo.png" alt="Idira"></span>
-  </footer>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Seats</th>
+            <th>Status</th>
+            <th>Waitlist</th>
+          </tr>
+        </thead>
+        <tbody id="course-rows">
+          <tr><td colspan="4">Loading courses…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <span id="last-updated"></span>
+      <span class="powered">Powered by CyberArk Secrets Manager &amp; <img src="idira-logo.png" alt="Idira"></span>
+    </footer>
+  </main>
 
 <script>
   fetch("courses.json")
