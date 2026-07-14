@@ -114,19 +114,6 @@
     gap: 14px;
   }
 
-  .demo-pill {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--brand);
-    background: rgba(38,91,255,0.1);
-    border: 1px solid rgba(38,91,255,0.25);
-    padding: 4px 10px;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-
   .avatar {
     width: 32px;
     height: 32px;
@@ -165,6 +152,18 @@
     margin-bottom: 28px;
     flex-wrap: wrap;
     gap: 8px;
+  }
+
+  .hero-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .uni-logo {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
 
   .hero h1 {
@@ -274,12 +273,6 @@
     gap: 6px;
   }
 
-  footer img {
-    height: 12px;
-    width: auto;
-    opacity: 0.75;
-  }
-
   @media (max-width: 640px) {
     .nav-links { display: none; }
   }
@@ -298,7 +291,6 @@
       </ul>
     </div>
     <div class="nav-right">
-      <span class="demo-pill">Demo by Idira</span>
       <div class="avatar">MU</div>
     </div>
   </nav>
@@ -307,9 +299,15 @@
     <div class="breadcrumb">Portal / <span>Course Registration</span></div>
 
     <div class="hero">
-      <div>
-        <h1>Meridian University — Course Registration</h1>
-        <p id="semester">Loading semester…</p>
+      <div class="hero-title">
+        <svg class="uni-logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4 L58 14 V30 C58 46 47 56 32 60 C17 56 6 46 6 30 V14 Z" fill="#1b2a4a" stroke="#c9a227" stroke-width="2"/>
+          <path d="M20 26h24M20 34h24M20 42h16" stroke="#c9a227" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h1>Course Registration</h1>
+          <p id="semester">Loading semester…</p>
+        </div>
       </div>
     </div>
 
@@ -331,7 +329,7 @@
 
     <footer>
       <span id="last-updated"></span>
-      <span class="powered">Powered by CyberArk Secrets Manager &amp; <img src="idira-logo.png" alt="Idira"></span>
+      <span class="powered">Powered by Idira Secrets Manager</span>
     </footer>
   </main>
 
