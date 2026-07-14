@@ -1,0 +1,14 @@
+# Secrets / env
+.env
+.env.*
+
+# Claude local settings
+.claude/
+CLAUDE.local.md
+
+# IDE
+.idea/
+.DS_Store
+
+# Internal workshop docs (not part of app repo)
+usecase2-cicd-github-actions-spec.md
