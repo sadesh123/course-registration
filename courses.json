@@ -1,0 +1,34 @@
+{
+  "semester": "Semester 2, 2026",
+  "lastUpdated": "2026-09-15T09:42:00Z",
+  "courses": [
+    {
+      "code": "CS301",
+      "name": "Data Structures",
+      "seats": 12,
+      "status": "Open",
+      "waitlist": 0
+    },
+    {
+      "code": "CS410",
+      "name": "Network Security",
+      "seats": 0,
+      "status": "Closed",
+      "waitlist": 8
+    },
+    {
+      "code": "CS450",
+      "name": "Cloud Computing",
+      "seats": 3,
+      "status": "Open",
+      "waitlist": 0
+    },
+    {
+      "code": "MA201",
+      "name": "Discrete Mathematics",
+      "seats": 0,
+      "status": "Closed",
+      "waitlist": 12
+    }
+  ]
+}
