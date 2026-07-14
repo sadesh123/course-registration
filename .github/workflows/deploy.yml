@@ -1,0 +1,39 @@
+name: Build and Push Course Registration App
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fetch Docker Hub token from Conjur
+        id: conjur
+        uses: cyberark/conjur-action@v2.0.6
+        with:
+          url: https://myko-sadesh.secretsmgr.cyberark.cloud/api
+          account: conjur
+          authn_id: github-actions
+          secrets: data/vault/CICD/dockerhub-token/password|DOCKER_TOKEN
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: 1953h3/course-registration:latest
